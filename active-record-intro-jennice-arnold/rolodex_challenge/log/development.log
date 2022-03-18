@@ -38,3 +38,18 @@ Migrating to CreatePeople (20220317232224)
   [1m[36mPerson Create (0.7ms)[0m  [1m[32mINSERT INTO "people" ("first_name", "last_name", "phone", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["first_name", "Ash"], ["last_name", "Ketchum"], ["phone", "000000000"], ["created_at", "2022-03-17 23:44:03.661965"], ["updated_at", "2022-03-17 23:44:03.661965"]]
   [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mCOMMIT[0m
   [1m[36mPerson Load (16.5ms)[0m  [1m[34mSELECT "people".* FROM "people"[0m
+  [1m[36mPerson Load (8.0ms)[0m  [1m[34mSELECT "people".* FROM "people"[0m
+  [1m[36mPerson Load (0.4ms)[0m  [1m[34mSELECT "people".* FROM "people" WHERE "people"."last_name" = $1[0m  [["last_name", "Uzumaki"]]
+  [1m[36mPerson Load (1.5ms)[0m  [1m[34mSELECT "people".* FROM "people"[0m
+  [1m[36mTRANSACTION (3.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPerson Create (0.8ms)[0m  [1m[32mINSERT INTO "people" ("first_name", "last_name", "phone", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["first_name", "Naruto"], ["last_name", "Uzumaki"], ["phone", "4088588855"], ["created_at", "2022-03-18 00:36:38.048861"], ["updated_at", "2022-03-18 00:36:38.048861"]]
+  [1m[36mTRANSACTION (3.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mPerson Load (2.2ms)[0m  [1m[34mSELECT "people".* FROM "people"[0m
+  [1m[36mPerson Load (0.6ms)[0m  [1m[34mSELECT "people".* FROM "people" WHERE "people"."last_name" = $1[0m  [["last_name", "Uzumaki"]]
+  [1m[36mPerson Load (0.6ms)[0m  [1m[34mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPerson Update (4.7ms)[0m  [1m[33mUPDATE "people" SET "phone" = $1, "updated_at" = $2 WHERE "people"."id" = $3[0m  [["phone", "8589009000"], ["updated_at", "2022-03-18 00:39:04.513620"], ["id", 6]]
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mPerson Load (0.6ms)[0m  [1m[34mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[36mPerson Load (5.1ms)[0m  [1m[34mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mPerson Load (1.0ms)[0m  [1m[34mSELECT "people".* FROM "people"[0m

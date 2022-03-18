@@ -390,3 +390,104 @@ Loading development environment (Rails 7.0.2.3)
 3.0.0 :007 > 
 ^C
 3.0.0 :007 > 
+
+3.0.0 :006 > Person.create first_name: "Naruto", last_name: "Uzumaki", phone: "4
+088588855"
+  TRANSACTION (3.5ms)  BEGIN
+  Person Create (0.8ms)  INSERT INTO "people" ("first_name", "last_name", "phone", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["first_name", "Naruto"], ["last_name", "Uzumaki"], ["phone", "4088588855"], ["created_at", "2022-03-18 00:36:38.048861"], ["updated_at", "2022-03-18 00:36:38.048861"]]                                                                            
+  TRANSACTION (3.0ms)  COMMIT                                                   
+ =>                                                                             
+#<Person:0x00007fe47a716518                                                     
+ id: 6,                                                                         
+ first_name: "Naruto",                                                          
+ last_name: "Uzumaki",                                                          
+ phone: "4088588855",                                                           
+ created_at: Fri, 18 Mar 2022 00:36:38.048861000 UTC +00:00,                    
+ updated_at: Fri, 18 Mar 2022 00:36:38.048861000 UTC +00:00> 
+3.0.0 :007 > Person.all
+  Person Load (2.2ms)  SELECT "people".* FROM "people"
+ =>                                                           
+[#<Person:0x00007fe47d639840                                  
+  id: 1,                                                      
+  first_name: "Gon",                                          
+  last_name: "Freaks",                                        
+  phone: "619012345",                                         
+  created_at: Thu, 17 Mar 2022 23:36:37.710193000 UTC +00:00, 
+  updated_at: Thu, 17 Mar 2022 23:36:37.710193000 UTC +00:00>,
+ #<Person:0x00007fe47d639570                                  
+  id: 2,                                                      
+  first_name: "Midoriya",                                     
+  last_name: "Izuku",                                         
+  phone: "8004156000",                                        
+  created_at: Thu, 17 Mar 2022 23:39:01.596987000 UTC +00:00, 
+  updated_at: Thu, 17 Mar 2022 23:39:01.596987000 UTC +00:00>,
+ #<Person:0x00007fe47a3381f8
+  id: 3,
+  first_name: "Hayao",
+  last_name: "Miyazaki",
+  phone: "81570055777",
+  created_at: Thu, 17 Mar 2022 23:41:21.662260000 UTC +00:00,
+  updated_at: Thu, 17 Mar 2022 23:41:21.662260000 UTC +00:00>,
+ #<Person:0x00007fe47a32b868
+  id: 4,
+  first_name: "Borrito",
+  last_name: "Uzumaki",
+  phone: "50050005000",
+  created_at: Thu, 17 Mar 2022 23:43:24.668747000 UTC +00:00,
+  updated_at: Thu, 17 Mar 2022 23:43:24.668747000 UTC +00:00>,
+ #<Person:0x00007fe47a32b0c0
+  id: 5,
+  first_name: "Ash",
+  last_name: "Ketchum",
+  phone: "000000000",
+  created_at: Thu, 17 Mar 2022 23:44:03.661965000 UTC +00:00,
+  updated_at: Thu, 17 Mar 2022 23:44:03.661965000 UTC +00:00>,
+ #<Person:0x00007fe47a32af80
+  id: 6,
+  first_name: "Naruto",
+  last_name: "Uzumaki",
+  phone: "4088588855",
+  created_at: Fri, 18 Mar 2022 00:36:38.048861000 UTC +00:00,
+  updated_at: Fri, 18 Mar 2022 00:36:38.048861000 UTC +00:00>] 
+3.0.0 :008 > Person.where last_name: "Uzumaki"
+  Person Load (0.6ms)  SELECT "people".* FROM "people" WHERE "people"."last_name" = $1  [["last_name", "Uzumaki"]]                            
+ =>                                                           
+[#<Person:0x00007fe47d73f5a0                                  
+  id: 4,                                                      
+  first_name: "Borrito",                                      
+  last_name: "Uzumaki",                                       
+  phone: "50050005000",                                       
+  created_at: Thu, 17 Mar 2022 23:43:24.668747000 UTC +00:00, 
+  updated_at: Thu, 17 Mar 2022 23:43:24.668747000 UTC +00:00>,
+ #<Person:0x00007fe47d73f4d8                                  
+  id: 6,                                                      
+  first_name: "Naruto",                                       
+  last_name: "Uzumaki",                                       
+  phone: "4088588855",                                        
+  created_at: Fri, 18 Mar 2022 00:36:38.048861000 UTC +00:00,
+  updated_at: Fri, 18 Mar 2022 00:36:38.048861000 UTC +00:00>] 
+3.0.0 :009 > naruto = Person.find 6
+  Person Load (0.6ms)  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT $2  [["id", 6], ["LIMIT", 1]]                                    
+ =>                                                                    
+#<Person:0x00007fe47ea3a920                                            
+...                                                                    
+3.0.0 :010 > naruto.phone = "8589009000"
+ => "8589009000" 
+3.0.0 :011 > naruto.save
+  TRANSACTION (0.3ms)  BEGIN
+  Person Update (4.7ms)  UPDATE "people" SET "phone" = $1, "updated_at" = $2 WHERE "people"."id" = $3  [["phone", "8589009000"], ["updated_at", "2022-03-18 00:39:04.513620"], ["id", 6]]                                              
+  TRANSACTION (0.9ms)  COMMIT                                          
+ => true                                                               
+3.0.0 :012 > Person.find 6
+  Person Load (0.6ms)  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT $2  [["id", 6], ["LIMIT", 1]]                           
+ =>                                                           
+#<Person:0x00007fe47a708a30                                   
+ id: 6,                                                       
+ first_name: "Naruto",                                        
+ last_name: "Uzumaki",                                        
+ phone: "8589009000",                                         
+ created_at: Fri, 18 Mar 2022 00:36:38.048861000 UTC +00:00,  
+ updated_at: Fri, 18 Mar 2022 00:39:04.513620000 UTC +00:00>  
+3.0.0 :013 > Person.find(3).first_name
+  Person Load (5.1ms)  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT $2  [["id", 3], ["LIMIT", 1]]                                             
+ => "Hayao"    
