@@ -88,4 +88,17 @@ rails db:migrate
 
 rails c
 omar = CreditCard.find 1
-omar.
+omar.update credit_limit:1000
+
+jose = CreditCard.find 2
+jose.update credit_limit:1000
+
+jacob = CreditCard.find 3
+jacob.update credit_limit:5000
+
+four = CreditCard.find 4
+four.update credit_limit:5000
+
+
+five = CreditCard.find 5
+five.update credit_limit:10000
