@@ -86,4 +86,6 @@ end
 
 rails db:migrate
 
-
+rails c
+omar = CreditCard.find 1
+omar.
